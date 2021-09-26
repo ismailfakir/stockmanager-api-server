@@ -21,7 +21,7 @@ module.exports = mongoose => {
       return object;
     });
   
-    const Tutorial = mongoose.model("product", schema);
-    return Tutorial;
+    const Product = mongoose.model("product", schema);
+    return Product;
   };
   

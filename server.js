@@ -34,7 +34,11 @@ db.mongoose
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json(
+    { 
+      message: "Welcome to stockmanager rest api server application."
+    }
+  );
 });
 
 require("./app/routes/auth.routes")(app);
