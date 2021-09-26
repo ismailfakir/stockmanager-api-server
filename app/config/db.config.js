@@ -8,6 +8,5 @@ const host = process.env.DB_HOST;
 const dburl = 'mongodb://'+user+':'+pass+'@'+host+':'+port+'/'+database;
 
 module.exports = {
-  //url: "mongodb://ismail:sysop@167.99.138.209:37017/stockmanager"
   url: dburl
 };
