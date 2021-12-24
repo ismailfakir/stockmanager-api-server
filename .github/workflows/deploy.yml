@@ -42,5 +42,7 @@ jobs:
       run: cat .env1
     - name: Create env file
       run: ./.github/scripts/create_dot_env.sh
+      env:
+        DB_HOST: ${{ secrets.DB_HOST }}
     - name: Test the created .env file
       run: cat .env
