@@ -40,3 +40,9 @@ jobs:
         file_name: .env
     - name: Test printing your secret (Remove this step in production)
       run: cat .env
+    - name: Create env file
+      run: |
+        touch .env1
+        echo API_ENDPOINT="https://xxx.execute-api.us-west-2.amazonaws.com" >> .env
+        echo API_KEY=${{ secrets.DB_DATABASE }} >> .env
+        cat .env1
