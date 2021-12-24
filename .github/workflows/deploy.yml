@@ -37,12 +37,9 @@ jobs:
         envkey_DB_PORT: ${{ secrets.DB_PORT }}
         envkey_DB_PASS: ${{ secrets.DB_PASS }}
         directory: ./
-        file_name: .env
+        file_name: .env1
     - name: Test printing your secret (Remove this step in production)
-      run: cat .env
+      run: cat .env1
     - name: Create env file
-      run: |
-        touch .env1
-        echo API_ENDPOINT="https://xxx.execute-api.us-west-2.amazonaws.com" >> .env1
-        echo API_KEY=${{ secrets.DB_DATABASE }} >> .env1
-        cat .env1
+      run: ./.github/scripts/create_dot_env.sh
+      run: cat .env
