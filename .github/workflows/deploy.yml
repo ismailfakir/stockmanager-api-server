@@ -42,4 +42,5 @@ jobs:
       run: cat .env1
     - name: Create env file
       run: ./.github/scripts/create_dot_env.sh
+    - name: Test the created .env file
       run: cat .env
