@@ -1,0 +1,219 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is stock manager API server.",
+        "version": "1.0.5",
+        "title": "Swagger stock manager",
+        "contact": {
+            "email": "md.ismail.fakir@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "host": "http://localhost:9080/",
+    "basePath": "/api",
+    "tags": [
+        {
+            "name": "roles",
+            "description": "Everything about your Roles",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://localhost:9080/"
+            }
+        },
+        {
+            "name": "user",
+            "description": "Operations about user",
+            "externalDocs": {
+                "description": "Find out more about our store",
+                "url": "http://swagger.io"
+            }
+        }
+    ],
+    "schemes": [
+        "https",
+        "http"
+    ],
+    "paths": {
+        "/roles": {
+            "post": {
+                "tags": [
+                    "roles"
+                ],
+                "summary": "Add a new role",
+                "description": "",
+                "operationId": "addRole",
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Role object that needs to be added to the database",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Role"
+                        }
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "petstore_auth": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            }
+            
+        },
+        "/roles/{roleId}": {
+            "get": {
+                "tags": [
+                    "roles"
+                ],
+                "summary": "Get role by role id",
+                "description": "",
+                "operationId": "getRoleById",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "id": "id",
+                        "in": "path",
+                        "description": "The role that needs to be fetched.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Role"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid id supplied"
+                    },
+                    "404": {
+                        "description": "Role not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "roles"
+                ],
+                "summary": "Update an existing role",
+                "description": "",
+                "operationId": "updateRole",
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Role object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Role"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Role not found"
+                    },
+                    "405": {
+                        "description": "Validation exception"
+                    }
+                },
+                "security": [
+                    {
+                        "petstore_auth": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            }
+
+        }
+        
+    },
+    "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "name": "x-access-token",
+            "in": "header"
+        },
+        "stockmanager_auth": {
+            "type": "oauth2",
+            "authorizationUrl": "https://petstore.swagger.io/oauth/authorize",
+            "flow": "implicit",
+            "scopes": {
+                "read:pets": "read your pets",
+                "write:pets": "modify pets in your account"
+            }
+        }
+    },
+    "definitions": {
+        "Role": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string",
+                    "readOnly": true,
+                    "example": "6150759bf3a4923a94549447"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "admin"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "readOnly": true,
+                    "format": "date-time",
+                    "example": "2021-10-29T21:18:29.136Z"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "readOnly": true,
+                    "format": "date-time",
+                    "example": "2021-09-26T13:28:59.737Z"
+                }
+            },
+            "xml": {
+                "name": "Role"
+            }
+        }
+    }
+}

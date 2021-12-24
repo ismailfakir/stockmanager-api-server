@@ -16,6 +16,13 @@ app.use(express.json());  /* bodyParser.json() is deprecated */
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));   /* bodyParser.urlencoded() is deprecated */
 
+//swagger start
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+//swagger end
+
 const db = require("./app/models");
 const Role = db.role;
 db.mongoose
@@ -44,6 +51,7 @@ app.get("/", (req, res) => {
 require("./app/routes/auth.routes")(app);
 require("./app/routes/turorial.routes")(app);
 require("./app/routes/product.routes")(app);
+require("./app/routes/role.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 9080;
