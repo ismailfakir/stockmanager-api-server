@@ -59,8 +59,8 @@ jobs:
       key: ${{ secrets.SSH_KEY }}
       passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
       script: |
-      whoami
-      ls -al
+        whoami
+        ls -al
 
     # Install doctl.
     - name: Install doctl
