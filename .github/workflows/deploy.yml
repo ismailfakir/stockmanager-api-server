@@ -69,10 +69,10 @@ jobs:
     #    image_repository: stock-manager-api-server # required
     #    buffer_size: 1
 
+    - name: Push image to DigitalOcean Container Registry
+      run: docker push ${{ secrets.REGISTRY_NAME }}/stock-manager-api-server:$(echo $GITHUB_SHA | head -c7)
+
     - name: DigitalOcean Registry Prune
     uses: PierreAndreis/do-registry-prune-tags@0.0.1
     with:
       token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-
-    - name: Push image to DigitalOcean Container Registry
-      run: docker push ${{ secrets.REGISTRY_NAME }}/stock-manager-api-server:$(echo $GITHUB_SHA | head -c7)
