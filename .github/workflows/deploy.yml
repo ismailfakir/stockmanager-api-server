@@ -59,7 +59,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
         script: |
-          mkdir autodeploy
+          mkdir -p autodeploy
           cd autodeploy
           git clone git@github.com:ismailfakir/stockmanager-api-server.git
           ls -al
