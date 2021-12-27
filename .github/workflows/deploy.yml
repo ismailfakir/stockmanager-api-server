@@ -61,7 +61,7 @@ jobs:
         script: |
           mkdir -p autodeploy
           cd autodeploy
-          git clone git@github.com:ismailfakir/stockmanager-api-server.git
+          git clone https://github.com/ismailfakir/stockmanager-api-server.git
           ls -al
 
     # Install doctl.
