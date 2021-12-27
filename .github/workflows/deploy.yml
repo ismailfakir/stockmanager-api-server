@@ -61,29 +61,32 @@ jobs:
         script: |
           mkdir -p autodeploy
           cd autodeploy
+          rm -rf stockmanager-api-server
           git clone https://github.com/ismailfakir/stockmanager-api-server.git
+          cd stockmanager-api-server
+          cp /ismail/running-apps/stockmanager-api-server/.env .env
           ls -al
 
     # Install doctl.
-    - name: Install doctl
-      uses: digitalocean/action-doctl@v2
-      with:
-        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+    # - name: Install doctl
+    #   uses: digitalocean/action-doctl@v2
+    #   with:
+    #     token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
     
     # Build a Docker image of your application in your registry and tag the image with the $GITHUB_SHA.
-    - name: Build container image
-      run: docker build -t ${{ secrets.REGISTRY_NAME }}/stock-manager-api-server:$(echo $GITHUB_SHA | head -c7) .
+    # - name: Build container image
+    #   run: docker build -t ${{ secrets.REGISTRY_NAME }}/stock-manager-api-server:$(echo $GITHUB_SHA | head -c7) .
 
-    - name: Log in to DigitalOcean Container Registry with short-lived credentials
-      run: doctl registry login --expiry-seconds 1200
+    # - name: Log in to DigitalOcean Container Registry with short-lived credentials
+    #   run: doctl registry login --expiry-seconds 1200
 
-    - name: Push image to DigitalOcean Container Registry
-      run: docker push ${{ secrets.REGISTRY_NAME }}/stock-manager-api-server:$(echo $GITHUB_SHA | head -c7)
+    # - name: Push image to DigitalOcean Container Registry
+    #   run: docker push ${{ secrets.REGISTRY_NAME }}/stock-manager-api-server:$(echo $GITHUB_SHA | head -c7)
 
-    - name: DigitalOcean Registry Prune
-      uses: PierreAndreis/do-registry-prune-tags@0.0.1
-      with:
-        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+    # - name: DigitalOcean Registry Prune
+    #   uses: PierreAndreis/do-registry-prune-tags@0.0.1
+    #   with:
+    #     token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
     # build & push docker image to to dockerhub
     # - name: Docker Login
