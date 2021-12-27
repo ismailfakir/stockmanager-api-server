@@ -51,16 +51,16 @@ jobs:
     - name: Test the created .env file
       run: cat .env
     # ssh to deploy app
-    - name: multiple command
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
-        script: |
-          whoami
-          ls -al
+    # - name: multiple command
+      # uses: appleboy/ssh-action@master
+      # with:
+      #   host: ${{ secrets.SSH_HOST }}
+      #   username: ${{ secrets.SSH_USERNAME }}
+      #   key: ${{ secrets.SSH_KEY }}
+      #   passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
+      #   script: |
+      #     whoami
+      #     ls -al
 
     # Install doctl.
     - name: Install doctl
