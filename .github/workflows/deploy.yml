@@ -64,7 +64,7 @@ jobs:
           rm -rf stockmanager-api-server
           git clone https://github.com/ismailfakir/stockmanager-api-server.git
           cd stockmanager-api-server
-          cp /ismail/running-apps/stockmanager-api-server/.env .env
+          cp /root/ismail/running-apps/stockmanager-api-server/.env .env
           ls -al
 
     # Install doctl.
