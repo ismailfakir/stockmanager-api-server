@@ -43,7 +43,8 @@ db.mongoose
 app.get("/", (req, res) => {
   res.json(
     { 
-      message: "Welcome to stockmanager rest api server application."
+      message: "Welcome to stockmanager rest api server.",
+      time: '${Date.now()}'
     }
   );
 });
