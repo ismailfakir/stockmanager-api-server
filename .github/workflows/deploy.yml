@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x]
+        node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -65,7 +65,8 @@ jobs:
           git clone https://github.com/ismailfakir/stockmanager-api-server.git
           cd stockmanager-api-server
           cp /root/ismail/running-apps/stockmanager-api-server/.env .env
-          ls -al
+          npm install
+          pm2 restart server
 
     # Install doctl.
     # - name: Install doctl
